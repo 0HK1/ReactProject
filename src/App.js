@@ -1,23 +1,31 @@
-import logo from './logo.svg';
 import './App.css';
+import HelloWorld from './components/HelloWorld.js';
+import NameApiService from './services/NameApiService.js';
+import Pessoa from './components/Pessoa.js';
+import ImgApiService from './services/ImgApiService.js';
+import { useState, useEffect } from 'react';
 
 function App() {
+  
+  const [name, setName] = useState('');
+  const [url, setUrl] = useState('');
+  
+  useEffect(() => {
+    const fetchName = async () => {
+      const fetchedName = await NameApiService();
+      const fetchedUrl = await ImgApiService();
+      setUrl(fetchedUrl);
+      setName(fetchedName);
+    };
+
+    fetchName();
+  }, []);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <HelloWorld />
+      <Pessoa foto={url} nome={name} idade="30" profissao="Desenvolvedor" />
+      
     </div>
   );
 }
