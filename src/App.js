@@ -4,6 +4,8 @@ import NameApiService from './services/NameApiService.js';
 import Pessoa from './components/Pessoa.js';
 import ImgApiService from './services/ImgApiService.js';
 import { useState, useEffect } from 'react';
+import List from './components/List.js';
+import Evento from './components/Evento.js';
 
 function App() {
   
@@ -25,7 +27,8 @@ function App() {
     <div className="App">
       <HelloWorld />
       <Pessoa foto={url} nome={name} idade="30" profissao="Desenvolvedor" />
-      
+      <List/>
+      <Evento/>
     </div>
   );
 }
